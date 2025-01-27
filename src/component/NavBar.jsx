@@ -60,7 +60,7 @@ const NavBar = () => {
               <a href="/sellerReq">Request for Seller</a>
             </li>
             <li>
-              <a href="/dashboard/allusers">Dashboard</a>
+              <a href="/dashboard">Dashboard</a>
             </li>
           
           </ul>
@@ -89,7 +89,7 @@ const NavBar = () => {
               <a href="/sellerReq">Request for Seller</a>
             </li>
             <li>
-              <a href="/dashboard/allusers">Dashboard</a>
+              <a href="/dashboard">Dashboard</a>
             </li>
                
               

@@ -10,6 +10,10 @@ import ForgetPass from '../component/ForgetPass';
 import Dashboard from '../layout/Dashboard';
 import AllUsers from '../assets/adminRoute/AllUsers';
 import SellerReq from '../component/SellerReq';
+import PrivateRoute from './PrivateRoute';
+import AdminRoutes from './AdminRoutes';
+import MyProfile from '../component/MyProfile';
+import UpdateProfile from '../component/UpdateProfile';
 
   const router = createBrowserRouter([
     {
@@ -44,11 +48,19 @@ import SellerReq from '../component/SellerReq';
     },
     {
       path:"/dashboard",
-      element:<Dashboard></Dashboard>,
+      element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children:[
         {
           path:"/dashboard/allusers",
-          element:<AllUsers></AllUsers>
+          element:<AdminRoutes><AllUsers></AllUsers></AdminRoutes>
+        },
+        {
+          path:"/dashboard/myProfile",
+          element:<MyProfile></MyProfile>
+        },
+        {
+          path:"/dashboard/updateProfile",
+          element:<UpdateProfile></UpdateProfile>
         }
       ]
     }

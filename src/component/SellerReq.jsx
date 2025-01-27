@@ -98,7 +98,15 @@ const SellerReq = () => {
             Request For Seller
           </button>
         );
-      } else {
+      } else if (u?.role === "admin") {
+        return (
+            <h1 key={u.id} className="text-3xl text-center font-extrabold text-yellow-500">
+             Your are Admin,Only User Can Request for Seller
+          </h1>
+        );
+    }
+      
+      else {
         return (
           <h1 key={u.id} className="text-3xl font-extrabold text-green-500">
             You Are Already a Seller
