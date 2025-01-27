@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Context } from '../provider/AuthProvider';
 import axios from 'axios';
 import useAllUsers from '../assets/hook/useAllUsers';
@@ -11,63 +11,105 @@ const SellerReq = () => {
 
      let [users,refetch]= useAllUsers()
 
+     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
     
 
 
     let handleSeller=()=>{
+        
 
         Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
+            text: "Do you Want to be a Seller?",
+            icon: "question",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, I Want to be a Seller!"
           }).then((result) => {
             if (result.isConfirmed) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
+                axios.patch(`http://localhost:5000/users/${user?.email}`)
+                .then((res)=>{
+                    if(res.data.modifiedCount>0){
+                        setIsButtonDisabled(true);
+                        refetch()
+                        Swal.fire({
+                            title: "Seller Request Sent Successfully !",
+                            text: "Seller Request Sent Successfully !",
+                            icon: "success"
+                          });
+                    }
+                })
+                setIsButtonDisabled(true);
+              
             }
           });
 
 
 
-        // axios.patch(`http://localhost:5000/users/${user?.email}`)
-        // .then((res)=>{
-        //     if(res.data.modifiedCount>0){
-        //         alert("Seller Request Successfully Done")
-        //     }
-        // })
+       
     }
 
     
     return (
         <div className='flex justify-center mt-60'>
 
-                    {
+                    {/* {
                     users.map((u) => {
                         if (u.email === user?.email) {
-                        return u?.role === "user" ? (
+                        return u?.role === "user" || u?.role==="pending Seller Request" ? (
                             <button
                             key={u.id}
                             onClick={handleSeller}
                             className="btn btn-warning btn-lg"
+                            disabled={isButtonDisabled}
                             >
                             Request For Seller
                             </button>
                         ) : (
-                            <button key={u.id} className="btn btn-warning btn-lg">
+                            <h1 key={u.id} className="text-3xl font-extrabold text-green-500">
                             You Are Already a Seller
-                            </button>
+                            </h1>
                         );
                         }
                         return null;
                     })
-                    }
+                    } */}
+
+
+{
+  users.map((u) => {
+    if (u.email === user?.email) {
+      if (u?.role === "pending Seller Request") {
+        return (
+          <h1 key={u.id} className="text-3xl font-extrabold text-yellow-500">
+            Your Seller Request is Pending
+          </h1>
+        );
+      } else if (u?.role === "user") {
+        return (
+          <button
+            key={u.id}
+            onClick={handleSeller}
+            className="btn btn-warning btn-lg"
+            disabled={isButtonDisabled}
+          >
+            Request For Seller
+          </button>
+        );
+      } else {
+        return (
+          <h1 key={u.id} className="text-3xl font-extrabold text-green-500">
+            You Are Already a Seller
+          </h1>
+        );
+      }
+    }
+    return null;
+  })
+}
+
 
 
 

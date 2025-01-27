@@ -59,6 +59,9 @@ const NavBar = () => {
             <li>
               <a href="/sellerReq">Request for Seller</a>
             </li>
+            <li>
+              <a href="/dashboard/allusers">Dashboard</a>
+            </li>
           
           </ul>
         </div>
@@ -84,6 +87,9 @@ const NavBar = () => {
             
           <li>
               <a href="/sellerReq">Request for Seller</a>
+            </li>
+            <li>
+              <a href="/dashboard/allusers">Dashboard</a>
             </li>
                
               

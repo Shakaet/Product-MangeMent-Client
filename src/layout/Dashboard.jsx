@@ -21,6 +21,9 @@ const Dashboard = () => {
         <li className="hover:bg-orange-600 p-3 rounded-md transition-all">
           <Link to="/manage-product" className="block">My Cart</Link>
         </li>
+        <li className="hover:bg-orange-600 p-3 rounded-md transition-all">
+          <Link to="/" className="block">Home</Link>
+        </li>
       </ul>
     </div>
   </section>
