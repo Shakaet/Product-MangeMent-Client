@@ -14,6 +14,9 @@ import PrivateRoute from './PrivateRoute';
 import AdminRoutes from './AdminRoutes';
 import MyProfile from '../component/MyProfile';
 import UpdateProfile from '../component/UpdateProfile';
+import AddProduct from '../component/AddProduct';
+import MyAddedProduct from '../component/MyAddedProduct';
+import ManageProduct from '../component/ManageProduct';
 
   const router = createBrowserRouter([
     {
@@ -27,7 +30,7 @@ import UpdateProfile from '../component/UpdateProfile';
         },
         {
           path:"/sellerReq",
-          element:<SellerReq></SellerReq>
+          element:<PrivateRoute><SellerReq></SellerReq></PrivateRoute>
 
         }
        
@@ -50,9 +53,27 @@ import UpdateProfile from '../component/UpdateProfile';
       path:"/dashboard",
       element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children:[
+
+        //admin routes
         {
           path:"/dashboard/allusers",
           element:<AdminRoutes><AllUsers></AllUsers></AdminRoutes>
+        },
+        {
+
+          path:"/dashboard/manageProduct",
+          element:<ManageProduct></ManageProduct>
+
+        },
+
+        //seller routes
+        {
+          path:"/dashboard/addProduct",
+          element:<AddProduct></AddProduct>
+        },
+        {
+          path:"/dashboard/myaddedProduct",
+          element:<MyAddedProduct></MyAddedProduct>
         },
         {
           path:"/dashboard/myProfile",

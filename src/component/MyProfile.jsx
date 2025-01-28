@@ -16,7 +16,7 @@ const MyProfile = () => {
     return (
         <div>
 
-<div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-purple-500 p-4">
+<div className="min-h-screen flex items-center justify-center bg-opacity-80 bg-gradient-to-br from-yellow-500 via-blue-200 to-blue-800 hover:bg-gray-600 p-4">
       <div className="bg-white shadow-lg rounded-lg max-w-sm w-full p-6">
         <div className="flex flex-col items-center">
           {/* User Photo */}

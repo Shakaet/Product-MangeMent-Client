@@ -119,7 +119,7 @@ const AllUsers = () => {
     }
     return (
         <div>
-        <h2 className="mb-10 text-3xl font-extrabold">Total Users: {users.length}</h2>
+        <h2 className="mb-10 text-3xl font-extrabold text-center">Total Users: {users.length}</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white shadow-md rounded-lg">
             <thead className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white">

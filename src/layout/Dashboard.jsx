@@ -29,7 +29,7 @@ const Dashboard = () => {
           <Link to="/dashboard/allusers" className="block">All Users</Link>
         </li>
         <li className="hover:bg-orange-600 p-3 rounded-md transition-all text-gray-700 font-extrabold">
-          <Link to="/manage-product" className="block">Manage Product</Link>
+          <Link to="/dashboard/manageProduct" className="block">Manage Product</Link>
         </li>
 
 
@@ -41,11 +41,11 @@ const Dashboard = () => {
             isSeller && <div>
 
                     <li className="hover:bg-orange-600 p-3 rounded-md transition-all text-gray-700 font-extrabold">
-                    <Link to="/manage-product" className="block">Add Product</Link>
+                    <Link to="/dashboard/addProduct" className="block">Add Product</Link>
                     </li>
 
                     <li className="hover:bg-orange-600 p-3 rounded-md transition-all text-gray-700 font-extrabold">
-                    <Link to="/manage-product" className="block">My Added Product</Link>
+                    <Link to="/dashboard/myaddedProduct" className="block">My Added Product</Link>
                     </li>
 
             </div>
@@ -74,6 +74,7 @@ const Dashboard = () => {
   {/* Main Content */}
   <div className="flex-1 bg-gray-50 p-6">
     <div className="bg-white shadow-lg rounded-md p-5">
+      <h2 className='text-center text-5xl font-extrabold text-yellow-500 mb-10'>Welcome to Dashboard</h2>
       <Outlet />
     </div>
   </div>
