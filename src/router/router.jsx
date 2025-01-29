@@ -17,6 +17,9 @@ import UpdateProfile from '../component/UpdateProfile';
 import AddProduct from '../component/AddProduct';
 import MyAddedProduct from '../component/MyAddedProduct';
 import ManageProduct from '../component/ManageProduct';
+import UpdateProduct from '../component/UpdateProduct';
+import AllProducts from '../component/AllProducts';
+import ProductDetails from '../component/ProductDetails';
 
   const router = createBrowserRouter([
     {
@@ -27,6 +30,15 @@ import ManageProduct from '../component/ManageProduct';
             path:"/",
             element:<Home></Home>
 
+        },
+        {
+          path:"/allProducts",
+          element:<AllProducts></AllProducts>
+
+        },
+        {
+          path:"/product/details/:id",
+          element:<ProductDetails></ProductDetails>
         },
         {
           path:"/sellerReq",
@@ -82,6 +94,10 @@ import ManageProduct from '../component/ManageProduct';
         {
           path:"/dashboard/updateProfile",
           element:<UpdateProfile></UpdateProfile>
+        },
+        {
+          path:"/dashboard/updateProduct/:id",
+          element:<UpdateProduct></UpdateProduct>
         }
       ]
     }

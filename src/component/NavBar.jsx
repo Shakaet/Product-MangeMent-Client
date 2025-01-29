@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Context } from '../provider/AuthProvider';
+import { TiShoppingCart } from "react-icons/ti";
+import useCart from '../assets/hook/useCart';
 
 
 
 const NavBar = () => {
+
+  let [cartData,refetch]=  useCart()
 
  
 
@@ -17,11 +21,12 @@ const NavBar = () => {
     nav("/login")
 
   }
+  
 
  
     return (
         <div>
-        <div className="navbar bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white">
+      <div className="navbar bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white fixed top-0 z-50">
       {/* Navbar Start */}
       <div className="navbar-start">
         {/* Mobile Menu */}
@@ -62,6 +67,12 @@ const NavBar = () => {
             <li>
               <a href="/dashboard">Dashboard</a>
             </li>
+            {
+              user && <li>
+              <a  onClick={handlelogOut}>Log out</a>
+            </li>
+            }
+            
           
           </ul>
         </div>
@@ -75,12 +86,12 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 text-lg">
           <li>
-            <a href="#home" className="hover:text-yellow-300">
+            <a href="/" className="hover:text-yellow-300">
               Home
             </a>
           </li>
           <li>
-            <a href="#products" className="hover:text-yellow-300">
+            <a href="/allProducts" className="hover:text-yellow-300">
               All Products
             </a>
           </li>
@@ -91,6 +102,8 @@ const NavBar = () => {
             <li>
               <a href="/dashboard">Dashboard</a>
             </li>
+
+           
                
               
         </ul>
@@ -98,28 +111,66 @@ const NavBar = () => {
 
       {/* Navbar End */}
       <div className="navbar-end">
+     
         {user ? (
-          <div className="flex items-center space-x-3">
-            {/* User Avatar with Hover Name */}
-            <div className="relative group">
-              <div className="avatar">
-                <div className="w-10 rounded-full border-2 border-white">
-                  <img src={user.photoURL} alt="User Avatar" />
+        //   <div className="flex items-center space-x-3">
+        //     {/* User Avatar with Hover Name */}
+            
+        //     <div className="relative group">
+        //       <div  className="avatar">
+        //         <div className="w-10 rounded-full border-2 border-white">
+        //           <img src={user.photoURL} alt="User Avatar" />
+        //         </div>
+                
+        //       </div>
+        //       {/* Tooltip with User Name */}
+        //       <div className="absolute bottom-[-30px] left-1/2 -translate-x-1/2 hidden group-hover:block rounded-lg bg-black px-2 py-1 text-sm text-white shadow-md">
+        //         {user.displayName}
+        //       </div>
+        //     </div>
+        //     {/* Logout Button */}
+        //     <button
+        //       onClick={handlelogOut}
+        //       className="btn btn-outline border-white text-white hover:bg-white hover:text-black"
+        //     >
+        //       Logout
+        //     </button>
+        //     <div className="indicator mr-5">
+        // <span className="indicator-item badge badge-secondary text-xs md:text-sm">99+</span>
+        
+        // <div className='text-3xl'>
+        // <TiShoppingCart />
+        // </div>
+       
+        //   </div>
+        //   </div>
+        <div className="flex items-center space-x-3">
+              {/* User Avatar with Hover Name */}
+              <div className="relative group">
+                <div className="avatar">
+                  <div className="w-10 rounded-full border-2 border-white">
+                    <img title={user.displayName} src={user.photoURL} alt="User Avatar" />
+                  </div>
+                </div>
+                {/* Tooltip with User Name */}
+                {/* <div className="absolute bottom-[-30px] left-1/2 -translate-x-1/2 hidden group-hover:block rounded-lg bg-black px-2 py-1 text-sm text-white shadow-md">
+                  {user.displayName}
+                </div> */}
+              </div>
+              {/* Logout Button */}
+              <button
+                onClick={handlelogOut}
+                className="hidden lg:block btn btn-outline border-white text-white hover:bg-white hover:text-black"
+              >
+                Logout
+              </button>
+              <div className="indicator mr-5 font-bold">
+                <span className="indicator-item badge badge-secondary text-xs md:text-sm text-green-300 font-extrabold">{cartData.length}</span>
+                <div className="text-3xl">
+                  <TiShoppingCart />
                 </div>
               </div>
-              {/* Tooltip with User Name */}
-              <div className="absolute bottom-[-30px] left-1/2 -translate-x-1/2 hidden group-hover:block rounded-lg bg-black px-2 py-1 text-sm text-white shadow-md">
-                {user.displayName}
-              </div>
             </div>
-            {/* Logout Button */}
-            <button
-              onClick={handlelogOut}
-              className="btn btn-outline border-white text-white hover:bg-white hover:text-black"
-            >
-              Logout
-            </button>
-          </div>
         ) : (
           <Link to={"/login"}
             
@@ -128,9 +179,18 @@ const NavBar = () => {
             Login
           </Link>
         )}
+
+
       </div>
     </div>
         </div>
+    
+
+   
+
+
+    
+    
     );
 };
 

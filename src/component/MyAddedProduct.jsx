@@ -2,11 +2,15 @@ import React, { useContext } from 'react';
 import { Context } from '../provider/AuthProvider';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
+import Swal from 'sweetalert2';
+import { Link, useLocation } from 'react-router-dom';
 
 const MyAddedProduct = () => {
 
 
     let {user} =useContext(Context)
+
+    let location= useLocation()
 
     const fetchUsers = async () => {
         const response = await axios.get(`http://localhost:5000/myaddedproduct/${user?.email}`);
@@ -18,6 +22,35 @@ const MyAddedProduct = () => {
         queryKey: [user?.email,"products"], // The unique key for this query
         queryFn: fetchUsers, // Function to fetch the data
       });
+
+      let onDelete=(id)=>{
+        // alert(id)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you Want to Delete this item?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, I Want"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/product/${id}`)
+                .then((res)=>{
+                    if(res.data.deletedCount>0){
+                        refetch()
+                        Swal.fire({
+                            title: "This item is successfully deleted !",
+                            text: "This user is successfully deleted !",
+                            icon: "success"
+                          });
+                    }
+                })
+              
+            }
+          });
+      }
+    
     
 
 
@@ -52,16 +85,17 @@ const MyAddedProduct = () => {
               <td className="p-4">{product.category}</td>
               <td className="p-4">{product.price}</td>
               <td className="p-4">
-                <button
-                  onClick={() => onUpdate(product.product_id)}
+                <Link to={`/dashboard/updateProduct/${product._id}`}
+                state={{ from: location.pathname }}
+                  
                   className="bg-green-500 hover:bg-green-600 text-sm py-2 px-4 rounded-lg"
                 >
                   Update
-                </button>
+                </Link>
               </td>
               <td className="p-4">
                 <button
-                  onClick={() => onDelete(product.product_id)}
+                  onClick={() => onDelete(product._id)}
                   className="bg-red-500 hover:bg-red-600 text-sm py-2 px-4 rounded-lg"
                 >
                   Delete

@@ -3,6 +3,7 @@ import { Context } from '../provider/AuthProvider';
 import axios from 'axios';
 import useAllUsers from '../assets/hook/useAllUsers';
 import Swal from 'sweetalert2';
+import { Link, NavLink } from 'react-router-dom';
 
 const SellerReq = () => {
 
@@ -80,6 +81,7 @@ const SellerReq = () => {
 
 {
   users.map((u) => {
+    console.log(u.role)
     if (u.email === user?.email) {
       if (u?.role === "pending Seller Request") {
         return (
@@ -89,7 +91,19 @@ const SellerReq = () => {
         );
       } else if (u?.role === "user") {
         return (
-          <button
+          // <button
+          //   key={u.id}
+          //   onClick={handleSeller}
+          //   className="btn btn-warning btn-lg"
+          //   disabled={isButtonDisabled}
+          // >
+          //   Request For Seller
+          // </button>
+
+          <>
+          <div className="flex flex-col items-center justify-center text-center space-y-4 p-6 bg-white  rounded-lg max-w-md mx-auto my-10">
+        
+           <button
             key={u.id}
             onClick={handleSeller}
             className="btn btn-warning btn-lg"
@@ -97,20 +111,57 @@ const SellerReq = () => {
           >
             Request For Seller
           </button>
+
+</div>
+
+
+          </>
         );
       } else if (u?.role === "admin") {
         return (
-            <h1 key={u.id} className="text-3xl text-center font-extrabold text-yellow-500">
-             Your are Admin,Only User Can Request for Seller
+          //   <h1 key={u.id} className="text-3xl text-center font-extrabold text-yellow-500 bg-white">
+          //    Your are Admin,Only User Can Request for Seller
+          // </h1>
+          <>
+          <div className="flex flex-col items-center justify-center text-center space-y-4 p-6 bg-white  rounded-lg max-w-lg mx-auto my-10">
+          <h1
+            key={u.id}
+            className="text-3xl mb-5  font-extrabold text-green-500"
+          >
+            Your are Admin,Only User Can Request for Seller
           </h1>
+        
+         
+        </div>
+
+        </>
+
         );
     }
       
       else {
         return (
-          <h1 key={u.id} className="text-3xl font-extrabold text-green-500">
-            You Are Already a Seller
-          </h1>
+          <>
+          <div className="flex flex-col items-center justify-center text-center space-y-4 p-6 bg-white  rounded-lg max-w-md mx-auto my-10">
+  <h1
+    key={u.id}
+    className="text-3xl mb-5  font-extrabold text-green-500"
+  >
+    You Are Already a Seller
+  </h1>
+
+  <p>
+    <NavLink
+      to={"/dashboard/addProduct"}
+      className="btn bg-green-500 text-white text-xs md:text-sm py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300"
+    >
+      Add Product
+    </NavLink>
+  </p>
+</div>
+
+
+          </>
         );
       }
     }

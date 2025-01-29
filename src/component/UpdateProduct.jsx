@@ -1,62 +1,111 @@
-import axios from 'axios';
 import React, { useContext, useState } from 'react';
-import Swal from 'sweetalert2';
 import { Context } from '../provider/AuthProvider';
+import Swal from 'sweetalert2';
+import axios from 'axios';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+
+const UpdateProduct = () => {
+      
+    let location= useLocation()
+    console.log(location)
+    const previousPath = location.state?.from; 
+
+    let {id}= useParams()
+    let nav= useNavigate()
+
+    const fetchUsers = async () => {
+        const response = await axios.get(`http://localhost:5000/product/${id}`);
+        return response.data;
+      };
+
+   
+    const { data: specificData = [], isLoading:SellerLoading } = useQuery({
+        queryKey: [id,"specificData"], // The unique key for this query
+        queryFn: fetchUsers, // Function to fetch the data
+      });
+      console.log(specificData)
+
+//       Specification
+
+// availability
+
+// category
+
+// description
+
+// email
+
+// price
+
+// product_image
+
+// product_title
+
+// rating
+
+// _id
 
 
-
-const AddProduct = () => {
 
     let {user}= useContext(Context)
 
-    const [formData, setFormData] = useState({
-        product_title: "",
-        product_image: "",
-        category: "Computers",
-        price: "",
-        description: "",
-        Specification: "",
-        availability: true,
-        rating: "",
-        email:user?.email
-      });
     
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-          ...formData,
-          [name]: name === "Specification" ? value.split(",") : value,
-        });
-      };
+      
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Product Data:", formData);
+        const formData = {
+            product_title: e.target.product_title.value,
+            product_image: e.target.product_image.value,
+            category: e.target.category.value,
+            price: parseFloat(e.target.price.value),
+            description: e.target.description.value,
+            Specification: e.target.Specification.value.split(",").map((item) => item.trim()), // Convert comma-separated list to an array
+            availability: e.target.availability.value === "true", // Convert string to boolean
+            rating: parseFloat(e.target.rating.value),
+          };
+        
+          console.log(formData);
         // Add your database submission logic here
 
-        axios.post("http://localhost:5000/addproducts", formData)
+        axios.patch(`http://localhost:5000/product/${id}`, formData)
                 .then((res) => {
                     console.log("Response:", res.data);
                     if (res.data.
-                        acknowledged
+                        modifiedCount>0
                         ) {
                         
                         Swal.fire({
                             icon: "success",
-                            title: "Product added Successfully",
+                            title: "Product Updated Successfully",
                             showConfirmButton: false,
                             timer: 1500
                           });
+
+                          if(previousPath==="/dashboard/manageProduct"){
+                            nav("/dashboard/manageProduct")
+
+                          }
+                          else{
+                            nav("/dashboard/myaddedProduct")
+                          }
+                         
+
                     }
                 })
+
+            }
                
 
-      };
+
     return (
         <div>
-            <div className="p-6 bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 rounded-lg shadow-lg max-w-3xl mx-auto my-10">
+
+<div>
+    <div className="p-6 bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 rounded-lg shadow-lg max-w-3xl mx-auto my-10">
       <h2 className="text-2xl font-bold text-center text-blue-900 mb-6">
-        Add a New Product
+        Update Product
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -66,8 +115,8 @@ const AddProduct = () => {
           <input
             type="text"
             name="product_title"
-            value={formData.product_title}
-            onChange={handleChange}
+            defaultValue={specificData.product_title}
+         
             required
             className="w-full px-4 py-2 rounded-lg border border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter product title"
@@ -80,8 +129,8 @@ const AddProduct = () => {
           <input
             type="url"
             name="product_image"
-            value={formData.product_image}
-            onChange={handleChange}
+            defaultValue={specificData.product_image}
+           
             required
             className="w-full px-4 py-2 rounded-lg border border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter image URL"
@@ -93,8 +142,8 @@ const AddProduct = () => {
           </label>
           <select
             name="category"
-            value={formData.category}
-            onChange={handleChange}
+            defaultValue={specificData.category}
+           
             className="w-full px-4 py-2 rounded-lg border border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="Computers">Computers</option>
@@ -111,8 +160,8 @@ const AddProduct = () => {
           <input
             type="number"
             name="price"
-            value={formData.price}
-            onChange={handleChange}
+            defaultValue={specificData.price}
+           
             required
             className="w-full px-4 py-2 rounded-lg border border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter price"
@@ -124,8 +173,8 @@ const AddProduct = () => {
           </label>
           <textarea
             name="description"
-            value={formData.description}
-            onChange={handleChange}
+            defaultValue={specificData.description}
+            
             required
             className="w-full px-4 py-2 rounded-lg border border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter product description"
@@ -138,8 +187,8 @@ const AddProduct = () => {
           <input
             type="text"
             name="Specification"
-            value={formData.Specification}
-            onChange={handleChange}
+            defaultValue={specificData.Specification}
+            
             className="w-full px-4 py-2 rounded-lg border border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="e.g., 16GB RAM, 512GB SSD"
           />
@@ -150,8 +199,8 @@ const AddProduct = () => {
           </label>
           <select
             name="availability"
-            value={formData.availability}
-            onChange={handleChange}
+            defaultValue={specificData.availability}
+            
             className="w-full px-4 py-2 rounded-lg border border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value={true}>Available</option>
@@ -165,8 +214,8 @@ const AddProduct = () => {
           <input
             type="number"
             name="rating"
-            value={formData.rating}
-            onChange={handleChange}
+            defaultValue={specificData.rating}
+            
             required
             step="0.1"
             max="5"
@@ -179,12 +228,14 @@ const AddProduct = () => {
           type="submit"
           className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          Add Product
+          Update Product
         </button>
       </form>
     </div>
         </div>
+            
+        </div>
     );
 };
 
-export default AddProduct;
+export default UpdateProduct;

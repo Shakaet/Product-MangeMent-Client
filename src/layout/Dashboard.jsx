@@ -1,17 +1,27 @@
-import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import useAdmin from '../assets/hook/useAdmin';
 import useUser from '../assets/hook/useUser';
 import useSeller from '../assets/hook/useSeller';
+import { Context } from '../provider/AuthProvider';
 
 
 const Dashboard = () => {
+
+  let {signOuts}=useContext(Context)
+  let nav= useNavigate()
 
     let [isAdmin,refetch] = useAdmin()
 
     let[isSeller]= useSeller()
 
     let [isUser]= useUser()
+
+    let handleLogout=()=>{
+      signOuts()
+      nav("/login")
+
+    }
 
     
     
@@ -26,7 +36,7 @@ const Dashboard = () => {
             isAdmin && <div>
 
            <li className="hover:bg-orange-600 p-3 rounded-md transition-all text-gray-700 font-extrabold">
-          <Link to="/dashboard/allusers" className="block">All Users</Link>
+          <Link to="/dashboard/allusers" className="block">User Management</Link>
         </li>
         <li className="hover:bg-orange-600 p-3 rounded-md transition-all text-gray-700 font-extrabold">
           <Link to="/dashboard/manageProduct" className="block">Manage Product</Link>
@@ -64,8 +74,11 @@ const Dashboard = () => {
         <li className="hover:bg-orange-600 p-3 rounded-md transition-all text-gray-700 font-extrabold">
           <Link to="/" className="block">Home</Link>
         </li>
+        <li className="hover:bg-orange-600 p-3 rounded-md transition-all text-gray-700 font-extrabold">
+          <Link to="/allProducts" className="block">All Product</Link>
+        </li>
         <li className="hover:bg-orange-600 p-3 rounded-md transition-all text-red-700 font-extrabold">
-          <Link to="/" className="block">LogOut</Link>
+          <Link onClick={handleLogout} className="block">LogOut</Link>
         </li>
       </ul>
     </div>
