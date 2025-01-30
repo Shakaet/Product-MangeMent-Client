@@ -3,12 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Context } from '../provider/AuthProvider';
 import { TiShoppingCart } from "react-icons/ti";
 import useCart from '../assets/hook/useCart';
+import useAllUsers from '../assets/hook/useAllUsers';
 
 
 
 const NavBar = () => {
 
-  let [cartData,refetch]=  useCart()
+  let [cartData]=  useCart()
+  let [users,refetch]= useAllUsers()
 
  
 
@@ -56,10 +58,10 @@ const NavBar = () => {
             className="menu menu-sm dropdown-content mt-3 w-52 rounded-box bg-white p-2 shadow text-black"
           >
             <li>
-              <a href="#home">Home</a>
+              <a href="/">Home</a>
             </li>
             <li>
-              <a href="#products">All Products</a>
+              <a href="/allProducts">All Products</a>
             </li>
             <li>
               <a href="/sellerReq">Request for Seller</a>
@@ -164,12 +166,23 @@ const NavBar = () => {
               >
                 Logout
               </button>
-              <div className="indicator mr-5 font-bold">
-                <span className="indicator-item badge badge-secondary text-xs md:text-sm text-green-300 font-extrabold">{cartData.length}</span>
-                <div className="text-3xl">
-                  <TiShoppingCart />
-                </div>
-              </div>
+
+              {
+            users
+              .filter((u) => u.email === user?.email && u.role === "user")
+              .map((u) => (
+                <Link to={"/dashboard/mycart"} key={u.email} className="indicator mr-5 font-bold">
+                  <span className="indicator-item badge badge-secondary text-xs md:text-sm text-green-300 font-extrabold">
+                    {cartData.length}
+                  </span>
+                  <div className="text-3xl">
+                    <TiShoppingCart />
+                  </div>
+                </Link>
+              ))
+                }
+
+              
             </div>
         ) : (
           <Link to={"/login"}

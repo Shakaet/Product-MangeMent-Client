@@ -6,10 +6,12 @@ import axios from 'axios';
 import { Context } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import useCart from '../assets/hook/useCart';
+import useAllUsers from '../assets/hook/useAllUsers';
 
 const ProductDetails = () => {
 
     let {user}= useContext(Context)
+    let [users]= useAllUsers()
     
     let [cartData,refetch]=  useCart()
     // let [cartBtn,setCartBtn] = useState(false)
@@ -144,15 +146,23 @@ const ProductDetails = () => {
           </p>
         </div>
 
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={() => handleAddToCart(product)}
-          disabled={!product.availability}
-          className={`${product.availability ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-400 cursor-not-allowed"} w-full bg-purple-600 text-white py-3 rounded-lg font-bold text-lg hover:bg-purple-700 transition duration-300`}
-        >
-          {product.availability ? "Add to Cart" : "Out of Stock"}
-        </motion.button>
+        {
+            users
+              .filter((u) => u.email === user?.email && u.role === "user" || u.role === "pending Seller Request")
+              .map((u) => (
+                <>
+                <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => handleAddToCart(product)}
+                disabled={!product.availability}
+                className={`${product.availability ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-400 cursor-not-allowed"} w-full bg-purple-600 text-white py-3 rounded-lg font-bold text-lg hover:bg-purple-700 transition duration-300`}
+              >
+                {product.availability ? "Add to Cart" : "Out of Stock"}
+              </motion.button>
+              </>
+              ))
+                }
       </div>
     </div>
   </motion.div>

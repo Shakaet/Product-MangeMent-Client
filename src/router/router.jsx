@@ -20,6 +20,7 @@ import ManageProduct from '../component/ManageProduct';
 import UpdateProduct from '../component/UpdateProduct';
 import AllProducts from '../component/AllProducts';
 import ProductDetails from '../component/ProductDetails';
+import MyCart from '../component/MyCart';
 
   const router = createBrowserRouter([
     {
@@ -86,6 +87,11 @@ import ProductDetails from '../component/ProductDetails';
         {
           path:"/dashboard/myaddedProduct",
           element:<MyAddedProduct></MyAddedProduct>
+        },
+        {
+          path:"/dashboard/mycart",
+          element:<MyCart></MyCart>
+
         },
         {
           path:"/dashboard/myProfile",
