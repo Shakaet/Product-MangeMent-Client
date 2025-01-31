@@ -69,7 +69,7 @@ Visit `http://localhost:5000` to see the app running locally!
 ## 👥 **Contact**
 If you have any questions or suggestions, feel free to reach out!
 
-- **Email**: [Abdulla Al Shakaet](abdshakaet@gmail.com)
+- **Email**: [abdshakaet@gmail.com](abdshakaet@gmail.com)
 - **GitHub**: [Abdulla Al Shakaet](https://github.com/Shakaet)
 
 ---
