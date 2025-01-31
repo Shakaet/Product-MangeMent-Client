@@ -5,7 +5,7 @@ Welcome to **Smarty Product**! 🚀
 Smarty Product is your one-stop solution for all things gadget-related. Whether you’re looking for the latest computers, smartphones, smartwatches, chargers, or power banks, **Smarty Product** has everything you need. With a modern and responsive web app, you can easily explore, purchase, and get detailed information about your favorite gadgets!
 
 ## 🌐 **Live Demo**
-[**Click here to visit the live site**](#) 🚀  
+[**Click here to visit the live site**](https://superb-chaja-5589ab.netlify.app/) 🚀  
 Explore the features and functionality of the Smarty Product website!
 
 ## 💡 **Description**
@@ -58,7 +58,7 @@ To run the project locally, follow these steps:
     npm run dev
     ```
 
-Visit `http://localhost:5000` to see the app running locally!
+Visit `https://product-project-server.vercel.app` to see the app running locally!
 
 ## 📦 **Scripts**
 - `npm run dev`: Starts the development server using Vite.

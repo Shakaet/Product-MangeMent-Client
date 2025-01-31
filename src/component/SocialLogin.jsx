@@ -16,7 +16,7 @@ const SocialLogin = () => {
         googleSign()
           .then((result) => {
             let user=result.user
-            console.log(user)
+            // console.log(user)
             toast.success("Google Sign in successfully!");
             navigate(redirectPath);
 
@@ -27,7 +27,7 @@ const SocialLogin = () => {
                 role:"user"
 
             }
-            axios.post("http://localhost:5000/users",usersData)
+            axios.post("https://product-project-server.vercel.app/users",usersData)
             .then((res)=>{
                 if(res.data.insertedId){
                     // alert("user added")

@@ -25,9 +25,9 @@ const CheckoutForm = () => {
   useEffect(()=>{
 
     if(totalPrice>0){
-      axios.post("http://localhost:5000/createPaymentIntent",{price:totalPrice})
+      axios.post("https://product-project-server.vercel.app/createPaymentIntent",{price:totalPrice})
     .then(res=>{
-        console.log(res.data.clientSecret)
+        // console.log(res.data.clientSecret)
         setclientSecret(res.data.clientSecret)
 
     })
@@ -64,10 +64,10 @@ const CheckoutForm = () => {
     });
 
     if (error) {
-      console.log('[error]', error);
+    //   console.log('[error]', error);
       setError(error.message)
     } else {
-      console.log('[PaymentMethod]', paymentMethod);
+    //   console.log('[PaymentMethod]', paymentMethod);
       setError('')
     }
 
@@ -85,13 +85,13 @@ const CheckoutForm = () => {
     })
 
     if(confirmError){
-        console.log("confirm error")
+        // console.log("confirm error")
     }
     else{
-        console.log("payment intent",paymentIntent)
+        // console.log("payment intent",paymentIntent)
         if(paymentIntent.status==="succeeded" ){
 
-          console.log("transectionId: ",paymentIntent.id)
+        //   console.log("transectionId: ",paymentIntent.id)
           settransectionId(paymentIntent.id)
 
 
@@ -109,8 +109,8 @@ const CheckoutForm = () => {
           }
 
 
-          let res=await axios.post("http://localhost:5000/payments",PaymentItem)
-           console.log(res.data)
+          let res=await axios.post("https://product-project-server.vercel.app/payments",PaymentItem)
+        //    console.log(res.data)
            refetch()
            
            if(res.data?.intertedPayment?.insertedId){

@@ -11,7 +11,7 @@ const useAdmin = () => {
 
 
     const fetchUsers = async () => {
-        const response = await axios.get(`http://localhost:5000/users/admin/${user?.email}`);
+        const response = await axios.get(`https://product-project-server.vercel.app/users/admin/${user?.email}`);
         return response.data?.admin;
       };
 

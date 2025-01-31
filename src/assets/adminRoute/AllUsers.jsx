@@ -21,7 +21,7 @@ const AllUsers = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:5000/usersDeleted/${email}`)
+                axios.delete(`https://product-project-server.vercel.app/usersDeleted/${email}`)
         .then((res)=>{
             if(res.data.deletedCount>0){
                 refetch()
@@ -60,7 +60,7 @@ const AllUsers = () => {
 
     let handleReqDelete=(email)=>{
 
-         axios.patch(`http://localhost:5000/users/adminDeletedReqSeller/${email}`)
+         axios.patch(`https://product-project-server.vercel.app/users/adminDeletedReqSeller/${email}`)
         .then((res)=>{
             if(res.data.modifiedCount>0){
                 refetch()
@@ -88,7 +88,7 @@ const AllUsers = () => {
             confirmButtonText: "Yes, I Want"
           }).then((result) => {
             if (result.isConfirmed) {
-                axios.patch(`http://localhost:5000/users/adminUpdateSeller/${email}`)
+                axios.patch(`https://product-project-server.vercel.app/users/adminUpdateSeller/${email}`)
                 .then((res)=>{
                     if(res.data.modifiedCount>0){
                         refetch()
@@ -107,7 +107,7 @@ const AllUsers = () => {
 
 
 
-        // axios.patch(`http://localhost:5000/users/adminUpdateSeller/${email}`)
+        // axios.patch(`https://product-project-server.vercel.app/users/adminUpdateSeller/${email}`)
         // .then((res)=>{
         //     if(res.data.modifiedCount>0){
         //         refetch()

@@ -13,8 +13,8 @@ const MyPaymentHistory = () => {
      const { data:paymentsHistory,isLoading:paymentsHistoryLoading } = useQuery({
          queryKey: [user?.email,'paymentsHistory'],
          queryFn: async () =>{
-             let res = await axios.get(`http://localhost:5000/payments/${user?.email}`) 
-             console.log(res.data)
+             let res = await axios.get(`https://product-project-server.vercel.app/payments/${user?.email}`) 
+            //  console.log(res.data)
              return res.data
          }
        })

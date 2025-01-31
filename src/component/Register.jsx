@@ -64,7 +64,7 @@ const Register = () => {
         }
       
         // Log form data for debugging
-        console.log(name, email, img, password);
+        // console.log(name, email, img, password);
         
       
         // Prepare image files for upload
@@ -96,7 +96,7 @@ const Register = () => {
               .then((result)=>{
                toast.success("Profile Updated")
               
-            axios.post("http://localhost:5000/users",usersData)
+            axios.post("https://product-project-server.vercel.app/users",usersData)
             .then((res)=>{
                 if(res.data.insertedId){
                     // alert("user added")
