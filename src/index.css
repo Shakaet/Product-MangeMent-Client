@@ -1,2 +1,9 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@import 'swiper/css';
+.lexend-font {
+    font-family: "Lexend", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+  }

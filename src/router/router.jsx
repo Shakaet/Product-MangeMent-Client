@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     createBrowserRouter,
+    ServerRouter,
   } from "react-router-dom";
 import MainLayout from '../layout/MainLayout';
 import Home from '../component/Home';
@@ -21,6 +22,10 @@ import UpdateProduct from '../component/UpdateProduct';
 import AllProducts from '../component/AllProducts';
 import ProductDetails from '../component/ProductDetails';
 import MyCart from '../component/MyCart';
+import Paymentas from '../component/Paymentas';
+import MyPaymentHistory from '../component/MyPaymentHistory';
+import SellerRoute from './SellerRoute';
+import UserRoute from './userRoute';
 
   const router = createBrowserRouter([
     {
@@ -75,23 +80,33 @@ import MyCart from '../component/MyCart';
         {
 
           path:"/dashboard/manageProduct",
-          element:<ManageProduct></ManageProduct>
+          element:<AdminRoutes><ManageProduct></ManageProduct></AdminRoutes>
 
         },
 
         //seller routes
         {
           path:"/dashboard/addProduct",
-          element:<AddProduct></AddProduct>
+          element:<SellerRoute><AddProduct></AddProduct></SellerRoute>
         },
         {
           path:"/dashboard/myaddedProduct",
-          element:<MyAddedProduct></MyAddedProduct>
+          element:<SellerRoute><MyAddedProduct></MyAddedProduct></SellerRoute>
         },
+
+        //user panel
         {
           path:"/dashboard/mycart",
-          element:<MyCart></MyCart>
+          element:<UserRoute><MyCart></MyCart></UserRoute>
 
+        },
+        {
+          path:"/dashboard/pay",
+          element:<UserRoute><Paymentas></Paymentas></UserRoute>
+        },
+        {
+          path:"/dashboard/paymentHistory",
+          element:<UserRoute><MyPaymentHistory></MyPaymentHistory></UserRoute>
         },
         {
           path:"/dashboard/myProfile",

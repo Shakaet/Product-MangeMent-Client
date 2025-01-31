@@ -1,6 +1,7 @@
 import React from 'react';
 import useCart from '../assets/hook/useCart';
 import { Link } from 'react-router-dom';
+import { MdPayment } from "react-icons/md";
 
 const MyCart = () => {
 
@@ -15,7 +16,7 @@ const MyCart = () => {
     return (
         <div>
             <div>
-            <div className="flex-col gap-5 md:flex justify-between items-center bg-gradient-to-r from-yellow-600 to-red-500 overflow-x-hidden text-white p-6 rounded-xl shadow">
+            <div className="flex-col gap-5 md:flex justify-between items-center bg-gradient-to-r from-blue-600 to-red-500 overflow-x-hidden text-white p-6 rounded-xl shadow">
   <div className="flex items-center gap-3">
     <div className="text-xs md:text-3xl bg-white text-purple-600 p-2 rounded-lg shadow-md">
       🛒
@@ -29,6 +30,24 @@ const MyCart = () => {
     </div>
     <p className="text-xl md:text-2xl font-semibold">Total Price: ${totalPrice}</p>
   </div>
+  {
+  cartData.length === 0 ? (
+    <Link to="#" className="flex items-center gap-3 mt-5">
+      <p className="text-xl md:text-2xl font-semibold btn btn-warning">
+        <MdPayment />
+        Pay
+      </p>
+    </Link>
+  ) : (
+    <Link to="/dashboard/pay" className="flex items-center gap-3 mt-5">
+      <p className="text-xl md:text-2xl font-semibold btn btn-warning">
+        <MdPayment />
+        Pay
+      </p>
+    </Link>
+  )
+}
+
 </div>
             <div className="overflow-x-auto">
 

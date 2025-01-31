@@ -3,7 +3,7 @@ import { Context } from '../provider/AuthProvider';
 import useUser from '../assets/hook/useUser';
 import { Navigate, useLocation } from 'react-router-dom';
 
-const userRoute = ({children}) => {
+const UserRoute = ({children}) => {
     let {user,loading}= useContext(Context)
     let [isUser,userLoading]= useUser()
 
@@ -23,4 +23,4 @@ const userRoute = ({children}) => {
     return <Navigate  to={"/login"} state={{from:location}} replace></Navigate>
 };
 
-export default userRoute;
+export default UserRoute;

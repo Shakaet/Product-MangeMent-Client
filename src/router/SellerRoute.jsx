@@ -3,7 +3,7 @@ import { Context } from '../provider/AuthProvider';
 import useSeller from '../assets/hook/useSeller';
 import { useLocation } from 'react-router-dom';
 
-const SellerRoute = () => {
+const SellerRoute = ({children}) => {
     let {user,loading}= useContext(Context)
     let [isSeller,sellerLoading]= useSeller()
 

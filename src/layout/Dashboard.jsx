@@ -140,6 +140,11 @@ const Dashboard = () => {
               My Cart <span className="text-black">({cartData.length})</span>
             </Link>
           </li>
+          <li className="group mt-3">
+            <Link to="/dashboard/paymentHistory" className="block p-3 rounded-md transition-all bg-orange-500 hover:bg-orange-700 hover:scale-105">
+              My Payment History
+            </Link>
+          </li>
         </div>
       )}
 
