@@ -69,8 +69,8 @@ Visit `http://localhost:5000` to see the app running locally!
 ## 👥 **Contact**
 If you have any questions or suggestions, feel free to reach out!
 
-- **Email**: [your-email@example.com](abdshakaet@gmail.com)
-- **GitHub**: [your-github-username](https://github.com/Shakaet)
+- **Email**: [Abdulla Al Shakaet](abdshakaet@gmail.com)
+- **GitHub**: [Abdulla Al Shakaet](https://github.com/Shakaet)
 
 ---
 
