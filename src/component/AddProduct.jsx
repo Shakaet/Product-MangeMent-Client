@@ -6,6 +6,7 @@ import { Context } from '../provider/AuthProvider';
 
 
 const AddProduct = () => {
+  //add
 
     let {user}= useContext(Context)
 
