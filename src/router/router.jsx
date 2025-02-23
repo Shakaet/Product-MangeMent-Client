@@ -26,6 +26,8 @@ import Paymentas from '../component/Paymentas';
 import MyPaymentHistory from '../component/MyPaymentHistory';
 import SellerRoute from './SellerRoute';
 import UserRoute from './userRoute';
+import Statistics from '../component/Statistics';
+
 
   const router = createBrowserRouter([
     {
@@ -50,6 +52,10 @@ import UserRoute from './userRoute';
           path:"/sellerReq",
           element:<PrivateRoute><SellerReq></SellerReq></PrivateRoute>
 
+        },
+        {
+          path:"/stat",
+          element:<PrivateRoute><Statistics></Statistics></PrivateRoute>
         }
        
 

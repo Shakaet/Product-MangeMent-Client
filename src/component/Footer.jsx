@@ -32,21 +32,7 @@ const Footer = () => {
               transition={{ duration: 0.7 }}
               className="flex space-x-4"
             >
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                <FaFacebook size={30} className="hover:text-yellow-300" />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                <FaTwitter size={30} className="hover:text-yellow-300" />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                <FaInstagram size={30} className="hover:text-yellow-300" />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                <FaLinkedin size={30} className="hover:text-yellow-300" />
-              </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-                <FaYoutube size={30} className="hover:text-yellow-300" />
-              </a>
+              
             </motion.div>
           </div>
 
@@ -113,14 +99,8 @@ const Footer = () => {
               transition={{ duration: 1.2 }}
               className="flex"
             >
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="p-3 rounded-l-md w-2/3 text-black"
-              />
-              <button type="submit" className="bg-yellow-400 text-black p-3 rounded-r-md">
-                Subscribe
-              </button>
+              
+              
             </motion.form>
           </div>
         </div>

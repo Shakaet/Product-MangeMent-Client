@@ -282,6 +282,9 @@ const NavBar = () => {
               <li>
                 <Link to="/dashboard">Dashboard</Link>
               </li>
+              <li>
+                <Link to="/stat">Statistics</Link>
+              </li>
               {user && (
                 <li>
                   <a onClick={handlelogOut}>Log out</a>
@@ -314,6 +317,9 @@ const NavBar = () => {
             <li>
               <Link to="/dashboard">Dashboard</Link>
             </li>
+            <li>
+                <Link to="/stat">Statistics</Link>
+              </li>
           </ul>
         </div>
 
