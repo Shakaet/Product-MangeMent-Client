@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 
 const AllProducts = () => {
+
+  //add
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOption, setSortOption] = useState('');
 
