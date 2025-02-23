@@ -58,7 +58,7 @@ To run the project locally, follow these steps:
     npm run dev
     ```
 
-Visit `https://product-project-server.vercel.app` to see the app running locally!
+Visit `http://localhost:5000` to see the app running locally!
 
 ## 📦 **Scripts**
 - `npm run dev`: Starts the development server using Vite.

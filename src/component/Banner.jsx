@@ -15,7 +15,7 @@ const Banner = () => {
 
     
     const fetchUsers = async () => {
-        const response = await axios.get(`https://product-project-server.vercel.app/allproducts`);
+        const response = await axios.get(`http://localhost:5000/allproducts`);
         return response.data;
       };
 
@@ -30,7 +30,7 @@ const Banner = () => {
     <div>
 
     
-    <AwesomeSlider className='h-[45rem]'>
+    <AwesomeSlider className='h-[40rem]'>
       <div data-src="/b1.jpg" />
       <div data-src="/b4.jpg" />
       <div data-src="/b3.jpeg" />

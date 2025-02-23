@@ -33,7 +33,7 @@ const SellerReq = () => {
             confirmButtonText: "Yes, I Want to be a Seller!"
           }).then((result) => {
             if (result.isConfirmed) {
-                axios.patch(`https://product-project-server.vercel.app/users/${user?.email}`)
+                axios.patch(`http://localhost:5000/users/${user?.email}`)
                 .then((res)=>{
                     if(res.data.modifiedCount>0){
                         setIsButtonDisabled(true);

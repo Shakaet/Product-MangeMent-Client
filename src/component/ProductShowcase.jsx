@@ -27,7 +27,7 @@ const ProductShowcase = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-72 object-cover rounded-t-lg"
+                className="w-full h-40 object-cover rounded-t-lg"
               />
               <div className="p-4 space-y-2">
                 <h2 className="text-lg font-bold text-gray-800">{product.name}</h2>
@@ -36,6 +36,7 @@ const ProductShowcase = () => {
                 
               </div>
             </motion.div>
+             
           ))}
       </div>
     </div>

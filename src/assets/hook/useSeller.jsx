@@ -10,7 +10,7 @@ const useSeller = () => {
 
 
     const fetchUsers = async () => {
-        const response = await axios.get(`https://product-project-server.vercel.app/users/seller/${user?.email}`);
+        const response = await axios.get(`http://localhost:5000/users/seller/${user?.email}`);
         return response.data?.seller;
       };
 

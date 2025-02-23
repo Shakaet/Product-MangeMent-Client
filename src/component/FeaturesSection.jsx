@@ -25,6 +25,7 @@ const FeaturesSection = () => {
             <h3 className="text-xl font-semibold mt-3">{feature.title}</h3>
             <p className="text-gray-600 mt-2">{feature.description}</p>
           </motion.div>
+          
         ))}
       </div>
     </div>

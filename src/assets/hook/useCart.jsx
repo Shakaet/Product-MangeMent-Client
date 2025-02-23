@@ -9,7 +9,7 @@ const useCart = () => {
 
 
     const fetchUsers = async () => {
-        const response = await axios.get(`https://product-project-server.vercel.app/addtocart/${user?.email}`);
+        const response = await axios.get(`http://localhost:5000/addtocart/${user?.email}`);
         return response.data;
       };
 

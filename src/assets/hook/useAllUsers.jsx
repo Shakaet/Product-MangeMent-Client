@@ -11,7 +11,7 @@ import React from 'react';
 const useAllUsers = () => {
 
     const fetchUsers = async () => {
-        const response = await axios.get("https://product-project-server.vercel.app/users");
+        const response = await axios.get("http://localhost:5000/users");
         return response.data;
       };
 

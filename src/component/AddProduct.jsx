@@ -34,7 +34,7 @@ const AddProduct = () => {
         // console.log("Product Data:", formData);
         // Add your database submission logic here
 
-        axios.post("https://product-project-server.vercel.app/addproducts", formData)
+        axios.post("http://localhost:5000/addproducts", formData)
                 .then((res) => {
                     console.log("Response:", res.data);
                     if (res.data.

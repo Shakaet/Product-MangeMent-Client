@@ -19,7 +19,7 @@ const ProductDetails = () => {
     let {id}= useParams()
 
     const fetchUsers = async () => {
-        const response = await axios.get(`https://product-project-server.vercel.app/product/${id}`);
+        const response = await axios.get(`http://localhost:5000/product/${id}`);
         return response.data;
       };
 
@@ -62,7 +62,7 @@ const ProductDetails = () => {
         }
         // console.log(productDetailsData)
 
-        axios.post("https://product-project-server.vercel.app/addtocart",productDetailsData)
+        axios.post("http://localhost:5000/addtocart",productDetailsData)
                 .then((res) => {
                     console.log("Response:", res.data);
                     if (res.data.

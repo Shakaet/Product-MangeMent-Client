@@ -25,7 +25,7 @@ const CheckoutForm = () => {
   useEffect(()=>{
 
     if(totalPrice>0){
-      axios.post("https://product-project-server.vercel.app/createPaymentIntent",{price:totalPrice})
+      axios.post("http://localhost:5000/createPaymentIntent",{price:totalPrice})
     .then(res=>{
         // console.log(res.data.clientSecret)
         setclientSecret(res.data.clientSecret)
@@ -109,7 +109,7 @@ const CheckoutForm = () => {
           }
 
 
-          let res=await axios.post("https://product-project-server.vercel.app/payments",PaymentItem)
+          let res=await axios.post("http://localhost:5000/payments",PaymentItem)
         //    console.log(res.data)
            refetch()
            

@@ -6,34 +6,62 @@ import { Link } from 'react-router-dom';
 
 const AllProducts = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [sortOption, setSortOption] = useState('');
 
   const fetchUsers = async () => {
-    const response = await axios.get(`https://product-project-server.vercel.app/allproducts`);
+    const response = await axios.get(`http://localhost:5000/allproducts`);
     return response.data;
   };
 
   const { data: allProducts = [], isLoading: allLoading } = useQuery({
-    queryKey: ["allProducts"], // The unique key for this query
-    queryFn: fetchUsers, // Function to fetch the data
+    queryKey: ["allProducts"],
+    queryFn: fetchUsers,
   });
 
-  // Filter products based on the search query
-  const filteredProducts = allProducts.filter(product =>
+  // Filter products based on search query
+  let filteredProducts = allProducts.filter(product =>
     product.product_title.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  // Sorting logic
+  if (sortOption === "priceLowToHigh") {
+    filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
+  } else if (sortOption === "priceHighToLow") {
+    filteredProducts = [...filteredProducts].sort((a, b) => b.price - a.price);
+  } else if (sortOption === "ratingHighToLow") {
+    filteredProducts = [...filteredProducts].sort((a, b) => b.rating - a.rating);
+  } else if (sortOption === "ratingLowToHigh") {
+    filteredProducts = [...filteredProducts].sort((a, b) => a.rating - b.rating);
+  }
 
   return (
     <div className='bg-blue-300'>
       <div className="p-6 mt-20">
-       <div className=''>
-       <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search by title..."
-          className="w-1/2 p-3 rounded-lg border border-blue-400 mb-6"
-        />
-       </div>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          {/* Search Input */}
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search by title..."
+            className="w-full sm:w-1/2 p-3 rounded-lg border border-blue-400"
+          />
+
+          {/* Sorting Dropdown */}
+          <select
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+            className="p-3 border border-blue-400 rounded-lg"
+          >
+            <option value="">Sort By</option>
+            <option value="priceLowToHigh">Price: Low to High</option>
+            <option value="priceHighToLow">Price: High to Low</option>
+            <option value="ratingHighToLow">Rating: High to Low</option>
+            <option value="ratingLowToHigh">Rating: Low to High</option>
+          </select>
+        </div>
+
+        {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredProducts.map((product, index) => (
             <motion.div
@@ -56,6 +84,7 @@ const AllProducts = () => {
                 <h2 className="text-lg font-bold text-blue-900">
                   {product.product_title}
                 </h2>
+                <p className="text-gray-700 font-semibold">Price: ${product.price}</p>
                 <p
                   className={`font-semibold text-sm ${
                     product.availability ? "text-green-600" : "text-red-600"
