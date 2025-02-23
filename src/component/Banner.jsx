@@ -11,6 +11,7 @@ import SharedTitle from './Sharedtitle';
 const categories = ["Computers", "Phones", "Smart Watches", "Chargers", "Power Banks"];
 
 const Banner = () => {
+  //banner modified
     const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
 
     
