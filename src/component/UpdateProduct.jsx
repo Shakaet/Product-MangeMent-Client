@@ -15,7 +15,7 @@ const UpdateProduct = () => {
     let nav= useNavigate()
 
     const fetchUsers = async () => {
-        const response = await axios.get(`http://localhost:5000/product/${id}`);
+        const response = await axios.get(`https://product-project-server.vercel.app/product/${id}`);
         return response.data;
       };
 
@@ -69,7 +69,7 @@ const UpdateProduct = () => {
           // console.log(formData);
         // Add your database submission logic here
 
-        axios.patch(`http://localhost:5000/product/${id}`, formData)
+        axios.patch(`https://product-project-server.vercel.app/product/${id}`, formData)
                 .then((res) => {
                     // console.log("Response:", res.data);
                     if (res.data.

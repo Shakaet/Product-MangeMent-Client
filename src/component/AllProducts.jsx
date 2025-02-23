@@ -9,7 +9,7 @@ const AllProducts = () => {
   const [sortOption, setSortOption] = useState('');
 
   const fetchUsers = async () => {
-    const response = await axios.get(`http://localhost:5000/allproducts`);
+    const response = await axios.get(`https://product-project-server.vercel.app/allproducts`);
     return response.data;
   };
 

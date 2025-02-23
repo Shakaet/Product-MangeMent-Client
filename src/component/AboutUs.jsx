@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import SharedTitle from "./Sharedtitle";
 
 const AboutUs = () => {
+    //added
   return (
     <div className="py-20 px-6 bg-gray-300 text-center shadow-lg">
       <SharedTitle className="" heading={"About Us"} subheading={""}></SharedTitle>

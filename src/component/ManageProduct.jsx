@@ -9,7 +9,7 @@ const ManageProduct = () => {
     let location= useLocation()
 
     const fetchUsers = async () => {
-        const response = await axios.get("http://localhost:5000/allproduct");
+        const response = await axios.get("https://product-project-server.vercel.app/allproduct");
         return response.data;
       };
 
@@ -31,7 +31,7 @@ const ManageProduct = () => {
             confirmButtonText: "Yes, I Want"
           }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/product/${id}`)
+                axios.delete(`https://product-project-server.vercel.app/product/${id}`)
                 .then((res)=>{
                     if(res.data.deletedCount>0){
                         refetch()
