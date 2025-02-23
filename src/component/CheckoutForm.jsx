@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 
 const CheckoutForm = () => {
 
+  //added
+
     const stripe = useStripe();
   const elements = useElements();
          let {user}= useContext(Context)
