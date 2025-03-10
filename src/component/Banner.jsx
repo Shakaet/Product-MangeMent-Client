@@ -30,11 +30,14 @@ const Banner = () => {
 
     <div>
 
+{/* https://i.ibb.co.com/fVNWv63P/p3.jpg
+https://i.ibb.co.com/Y7868vmf/p2.jpg
+https://i.ibb.co.com/d0XnZqr0/p1.jpg */}
     
     <AwesomeSlider className='h-[40rem]'>
-      <div data-src="/b1.jpg" />
-      <div data-src="/b4.jpg" />
-      <div data-src="/b3.jpeg" />
+      <div data-src="https://i.ibb.co.com/Y7868vmf/p2.jpg" />
+      <div data-src="https://i.ibb.co.com/spnm8hRG/smartphone-photo-equipments-computer-mouse-flash-drive-earphones.jpg" />
+      <div data-src="https://i.ibb.co.com/d0XnZqr0/p1.jpg" />
     </AwesomeSlider>
 
         <div className='mt-30'>
